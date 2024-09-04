@@ -1,3 +1,3 @@
-from .addresses import router
+from .phone_address import router
 
 __all__ = ["router"]
