@@ -1,17 +1,15 @@
-import os
+import sys
+sys.path.append("..")
 
-from dotenv import load_dotenv, find_dotenv
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 
 from src.api import router
+from config import settings
 
 
 def create_fast_api_app():
-    load_dotenv(find_dotenv("../.env"))
-    env_name = os.getenv('MODE', 'DEV')
-
-    if env_name != 'PROD':
+    if settings.MODE != 'PROD':
         _app = FastAPI(
             default_response_class=ORJSONResponse,
         )
@@ -22,7 +20,7 @@ def create_fast_api_app():
             redoc_url=None
         )
 
-    _app.include_router(router, prefix="/api")
+    _app.include_router(router)
 
     return _app
 
