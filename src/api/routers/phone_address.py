@@ -21,7 +21,7 @@ async def get_address(phone: str = Query(regex=r"^[7-8]\d{10}$")):
     """
     Get address data by phone number.
 
-    Query params:
+    Path params:
     - **phone**: The phone number for which you want to obtain
         an associated address.
     """
